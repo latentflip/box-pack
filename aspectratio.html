@@ -1,0 +1,45 @@
+<div class='wrapper'>
+</div>
+
+<script>
+  var wrapper;
+
+  setInterval(function () {
+    wrapper = wrapper || document.querySelector('.wrapper');
+
+    var width = (Math.random() * 1.5 + 0.25) * 300;
+    var height = (Math.random() * 1.5 + 0.25) * width;
+
+    if (wrapper) {
+      wrapper.style.width = width + 'px';
+      wrapper.style.height = height + 'px';
+    }
+  }, 1000);
+
+  setTimeout(function () {
+    var video = document.createElement('video');
+
+    video.addEventListener('loadeddata', function () {
+      video.play();
+    }, false);
+
+    video.src = '/vids/cut-10-rotated.mp4';
+
+    wrapper.appendChild(video);
+  }, 1000);
+</script>
+
+<style>
+.wrapper {
+  background: coral;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper video {
+  width: 100%;
+  max-height: 100%;
+  display: block;
+}
+</style>

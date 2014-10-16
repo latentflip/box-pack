@@ -1,0 +1,20 @@
+{
+  "name": "boxes",
+  "version": "0.0.0",
+  "description": "",
+  "main": "demo.js",
+  "dependencies": {
+    "ampersand-state": "^4.3.12",
+    "cassowary": "^0.0.2",
+    "beefy": "^2.1.1",
+    "domready": "^1.0.7",
+    "underscore": "^1.7.0",
+    "tape": "^3.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
