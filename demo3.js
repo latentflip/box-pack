@@ -70,12 +70,12 @@ VideoManager.prototype.addRegion = function (name, region) {
     region.manager = this;
 };
 
-VideoManager.prototype.gotDrop = function (region) {
+VideoManager.prototype.handleDrop = function (region, position) {
     var video = this.dragging;
 
     if (video) {
         this.removeVideo(video);
-        region.addVideo(video);
+        region.addVideo(video, position);
     }
 };
 
@@ -92,6 +92,16 @@ VideoManager.prototype.addVideo = function (region, videoEl) {
 
         videoEl.addEventListener('dragend', function (e) {
             self.dragging = null;
+        }, false);
+
+        videoEl.addEventListener('dragover', function (e) {
+            e.preventDefault();
+        }, false);
+
+        videoEl.addEventListener('drop', function (e) {
+            e.stopPropagation();
+            var pos = videoEl.region._videos.indexOf(videoEl);
+            videoEl.region.manager.handleDrop(videoEl.region, pos);
         }, false);
     }
 
@@ -123,7 +133,7 @@ function Region (el) {
 
     this.el.addEventListener('drop', function (e) {
         e.preventDefault();
-        self.manager.gotDrop(self);
+        self.manager.handleDrop(self, -1);
     }, false);
 }
 
@@ -140,8 +150,13 @@ Region.prototype.updateDimensions = function () {
     return prevDimensions !== JSON.stringify(this.dimensions);
 };
 
-Region.prototype.addVideo = function (video) {
-    this._videos.push(video);
+Region.prototype.addVideo = function (video, position) {
+    video.region = this;
+    if (typeof position === 'undefined' || position === -1) {
+        this._videos.push(video);
+    } else {
+        this._videos.splice(position, 0, video);
+    }
     this.update();
 
 };
@@ -174,7 +189,7 @@ Region.prototype.update = function () {
 
         el.style.width = videoSize[0] + 'px';
         el.style.height = videoSize[1] + 'px';
-        
+
         row = Math.floor(i / solution[0]);
         col = i - (row * solution[0]);
 
@@ -203,7 +218,9 @@ manager.start();
 var fitInside = require('./lib/fit-inside');
 function calculateVideoSize (wrapperSize, videoAR, layout) {
     var totalAR = videoAR * (layout[0] / layout[1]);
+
     var totalSize = fitInside(wrapperSize, [totalAR, 1]);
+
     var videoSize = [
         totalSize[0]/layout[0],
         totalSize[1]/layout[1]
@@ -217,5 +234,5 @@ function calculateVideoSize (wrapperSize, videoAR, layout) {
 }
 
 setTimeout(function () {
-    addNVideos('podium', 3, 10); addNVideos('filmstrip', 10, 10); addNVideos('avatars', 20, 10);
+    addNVideos('podium', 2, 10); addNVideos('filmstrip', 10, 10); addNVideos('avatars', 20, 10);
 }, 500);
