@@ -26,7 +26,7 @@ var MyRegionManager = RegionManager.extend({
     initialRegions: {
         podium: '[data-hook~=podium]',
         filmstrip: '[data-hook~=filmstrip]',
-        avatars: '[data-hook~=avatars]',
+        avatars: '[data-hook~=avatars]'
     },
     determineRegion: function () {
         if (this.regions.podium.views.length < 2) return this.regions.podium;
