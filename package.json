@@ -1,6 +1,6 @@
 {
   "name": "box-pack",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "dependencies": {
     "ampersand-collection-view": "^1.1.2",
     "ampersand-state": "^4.3.12",
