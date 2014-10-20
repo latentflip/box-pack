@@ -1,20 +1,21 @@
 {
-  "name": "boxes",
+  "name": "box-pack",
   "version": "0.0.0",
-  "description": "",
-  "main": "demo.js",
   "dependencies": {
     "ampersand-state": "^4.3.12",
-    "cassowary": "^0.0.2",
-    "beefy": "^2.1.1",
     "domready": "^1.0.7",
-    "underscore": "^1.7.0",
+    "underscore": "^1.7.0"
+  },
+  "devDependencies": {
+    "beefy": "^2.1.1",
     "tape": "^3.0.0"
   },
-  "devDependencies": {},
+  "license": "ISC",
+  "main": "demo.js",
+  "publishConfig": {
+    "registry": "https://nlfpm.andyet.net/_private"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC"
+  }
 }
