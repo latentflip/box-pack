@@ -19,6 +19,7 @@
     "registry": "https://nlfpm.andyet.net/_private"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "beefy demo4.js"
   }
 }
