@@ -30,4 +30,3 @@ module.exports = function solve(size, videoAspectRatio, maxVideos) {
         return calcLayout(size, videoAspectRatio, nVideos);
     });
 };
-
